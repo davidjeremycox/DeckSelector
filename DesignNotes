@@ -1,0 +1,28 @@
+
+Modules:
+    Card  -- Done
+        Name
+        ?
+    Deck Drawing  -- Kip
+        Reset
+        Add card
+        Remove Card
+        Ordered Draw
+            Saving State
+        Ordered Draw with Replacement
+        ?
+    Input -- Scup
+        Read from File
+            Json formated input
+                Optional Name
+                Optional Card definitions
+                Deck Definition
+                    Cards - Number
+        ?
+    Output
+        Output to File
+        Output to Stdout
+        Write Deck to file
+    Random Number Facilities
+        Pick from List
+        Random from range
