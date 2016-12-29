@@ -1,4 +1,32 @@
 import random
+import copy
+
+class Task(object):
+    def __init__(self, description):
+        self.description = description
+        self.type = None
+        self.difficulty = 0
+        self.assignment = Workers.SCUP
+
+    def flip(self):
+        if self.assignment == Workers.SCUP:
+            self.assignment = Workers.KIP
+        elif self.assignment == Workers.KIP:
+            self.assignment = Workers.SCUP
+
+    def __eq__(self, other):
+        if not isinstance(other, Task):
+            return False
+        elif self.assignment != other.assignment:
+            return False
+        elif self.description != other.description:
+            return False
+        else:
+            return True
+
+class Workers(object):
+    SCUP = 1
+    KIP = 2
 
 def get_total_difficulty(task_list):
     total = 0
@@ -18,13 +46,13 @@ def difficult_difference(task_list, first_assignee=Workers.SCUP, second_assignee
     second_diff = get_total_assigned_difficult(task_list, second_assignee)
     return first_diff - second_diff
 
-def assign_tasks(task_list):
+def assign_tasks(task_list, first_assignee=Workers.SCUP, second_assignee=Workers.KIP):
     working_list = copy.deepcopy(task_list)
     #working_list.sort(key=lambda x: x.difficulty, reverse=True)
     assigned_list_shuffle = shuffle_assignment(working_list)
-    shuffle_difference = difficult_difference(assigned_list_shuffle)
+    shuffle_difference = difficult_difference(assigned_list_shuffle, first_assignee, second_assignee)
     working_list = copy.deepcopy(task_list)
-    assigned_list_equal = equal_assignment(working_list)
+    assigned_list_equal = equal_assignment(working_list, first_assignee, second_assignee)
     equal_difference = difficult_difference(assigned_list_equal)
     if shuffle_difference < equal_difference:
         return assigned_list_shuffle
@@ -60,29 +88,7 @@ def equal_assignment(task_list, first_assignee=Workers.SCUP, second_assignee=Wor
     assigned_list.extend(task_list)
     return assigned_list
 
-class Task(object):
-    def __init__(self, description):
-        self.description = description
-        self.type = None
-        self.difficulty = 0
-        self.assignment = Workers.SCUP
-
-    def flip(self):
-        if self.assignment == Workers.SCUP:
-            self.assignment = Workers.KIP
-        elif self.assignment == Workers.KIP:
-            self.assignment = Workers.SCUP
-
-    def __eq__(self, other):
-        if not isinstance(other, Task):
-            return False
-        elif self.assignment != other.assignment:
-            return False
-        elif self.description != other.description:
-            return False
-        else:
-            return True
-
-class Workers(object):
-    SCUP = 1
-    KIP = 2
+def print_task_list(task_list):
+    for task in task_list:
+        assignee = 'SCUP' if task.assignment == 1 else 'KIP'
+        print('Description: %s Assignee: %s Difficulty: %s' % (task.description, assignee, task.difficulty))
