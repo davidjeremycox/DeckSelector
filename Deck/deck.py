@@ -2,6 +2,7 @@ import random
 import copy
 from Deck.exceptions import DeckSizeException
 
+
 class Deck(object):
     def __init__(self, name=None, seed=None):
         self.name = name
