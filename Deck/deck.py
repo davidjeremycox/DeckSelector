@@ -20,6 +20,17 @@ class Deck(object):
         self.card_list.append(card)
 
     def draw_cards(self, n, replacement=False):
+        first_grab, second_grab = self.grab_splits(n, replacement)
+        card_list = random.sample(self.card_list, first_grab)
+        if not replacement:
+            self.remove_cards(card_list)
+            if self.reshuffle and len(self.card_list) == 0:
+                self.reset()
+        if second_grab > 0:
+            card_list.extend(self.draw_cards(second_grab, replacement))
+        return card_list
+
+    def grab_splits(self, n, replacement):
         if n > len(self.card_list) and self.reshuffle:
             first_grab = len(self.card_list)
             second_grab = n - len(self.card_list)
@@ -29,14 +40,7 @@ class Deck(object):
         else:
             first_grab = n
             second_grab = 0
-        card_list = random.sample(self.card_list, first_grab)
-        if not replacement:
-            self.remove_cards(card_list)
-            if self.reshuffle and len(self.card_list) == 0:
-                self.reset()
-        if second_grab > 0:
-            card_list.extend(self.draw_cards(second_grab, replacement))
-        return card_list
+        return first_grab, second_grab
 
     def draw_card(self, replacement=False):
         card = random.choice(self.card_list)
