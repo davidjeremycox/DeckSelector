@@ -1,0 +1,23 @@
+{
+  "cardDefinitions":[
+    {
+      "objectName": "NestedCard",
+      "importLoc": "Deck.nested_card"
+    }
+  ],
+  "deck": {
+    "cards": {
+      "card1": {
+        "type":"NestedCard",
+        "number":3,
+        "deck": {
+          "cards": {
+            "card1a": 5,
+            "card1b": 10
+          }
+        }
+      },
+      "card2": 3
+    }
+  }
+}
