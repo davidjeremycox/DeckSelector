@@ -11,12 +11,13 @@ def _setup_and_parse_args():
                    default=1)
     opt.add_option('-r', '--replacement', dest='replacement', action='store_true',
                    help='Draw with replacement (defaults to false)')
+    opt.add_option('-s', '--seed', dest='seed', help='Seed for random number generator')
     return opt.parse_args()
 
 if __name__ == '__main__':
     options, args = _setup_and_parse_args()
 
-    deck = deck_input.read_file(options.deck_file)
-    cards = deck.draw_cards(options.draws, options.replacement)
+    deck = deck_input.read_file(options.deck_file, options.seed)
+    cards = deck.draw_cards(int(options.draws), options.replacement)
     for card in cards:
-        print(card.name)
+        print(str(card))
