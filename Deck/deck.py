@@ -6,7 +6,7 @@ class Deck(object):
         self.name = name
         self._base_list = []
         self.card_list = []
-        random.seed()
+        random.seed(seed)
 
     def add_card(self, card):
         self._base_list.append(card)
