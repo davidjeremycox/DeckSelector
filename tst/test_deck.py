@@ -2,10 +2,12 @@ from Deck.deck import Deck
 from Deck.card import Card
 from Deck.exceptions import DeckSizeException
 
+
 def build_sample_deck():
     names = ['First Card', 'Second Card', 'Third Card']
     cards = [Card(name) for name in names]
     return cards
+
 
 def test_draw_too_many_cards():
     deck = Deck('Test Deck')
@@ -18,6 +20,7 @@ def test_draw_too_many_cards():
         print('Unexpected exception: %s' % str(err))
         assert False
 
+
 def test_draw_cards():
     deck = Deck('Test Deck', seed=10)
     deck.add_cards(build_sample_deck())
@@ -27,6 +30,7 @@ def test_draw_cards():
         if card.name != name:
             print('Unexpected card drawn: %s expected: %s' % (card.name, name))
             assert False
+
 
 def test_draw_card_reshuffle():
     deck = Deck('Test Deck', seed=10)
