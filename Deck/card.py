@@ -1,6 +1,9 @@
 
 class Card(object):
 
+    def __str__(self):
+        return self.name
+
     def __init__(self, in_name):
         self.name = in_name
 
