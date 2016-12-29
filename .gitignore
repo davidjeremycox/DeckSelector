@@ -2,3 +2,4 @@
 .idea
 DeckSelector.iml
 __pycache__
+*.pyc
