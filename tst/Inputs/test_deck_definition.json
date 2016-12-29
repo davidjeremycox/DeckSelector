@@ -1,6 +1,8 @@
 {
-  "cards":{
-    "card1":10,
-    "card2":5
+  "deck": {
+    "cards": {
+      "card1": 10,
+      "card2": 5
+    }
   }
 }
