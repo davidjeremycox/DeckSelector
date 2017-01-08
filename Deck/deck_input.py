@@ -48,7 +48,11 @@ def card_with_definition(card_name, a_card, all_definitions):
     card_class = get_class(card_type, all_definitions)
     card_number = get_with_default(a_card, NUMBER_FIELD_NAME, 1)
     if card_class:
-        return [card_class(card_name, json_values=a_card, card_definitions=all_definitions)] * int(card_number)
+        card_object = card_class(card_name, json_values=a_card, card_definitions=all_definitions)
+        if isinstance(card_object, list):
+            return card_object * int(card_number)
+        else:
+            return [card_class(card_name, json_values=a_card, card_definitions=all_definitions)] * int(card_number)
     else:
         raise ValueError("Unable to find implementation for type {0} in {1}".format(card_type, all_definitions))
 
