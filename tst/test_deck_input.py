@@ -2,6 +2,7 @@ from Deck.card import Card
 from Deck.nested_card import NestedCard
 from Deck.deck import Deck
 import Deck.deck_input as deck_input
+import UnitTestHelper.filepath as filepath
 
 
 def card_compare(test_card, expected_card):
@@ -20,7 +21,7 @@ def check_cards(test, expected):
 
 
 def test_read_file():
-    test_filepath = 'tst/Inputs/test_deck_definition.json'
+    test_filepath = filepath.localpath('test_deck_definition.json', 'tst/Inputs/')
     test_output = deck_input.read_file(test_filepath)
     expected_cards = [Card(u'card1')]*10
     expected_cards.extend([Card(u'card2')]*5)
@@ -33,7 +34,7 @@ def test_read_file():
 
 
 def test_read_nested_file():
-    test_filepath = 'tst/Inputs/test_nested_definition.json'
+    test_filepath = filepath.localpath('test_nested_definition.json', 'tst/Inputs/')
     test_output = deck_input.read_file(test_filepath)
     nested_deck = Deck(name=deck_input.DEFAULT_NAME, seed=None)
     nested_cards = [Card(u'card1a')]*5
@@ -53,7 +54,7 @@ def test_read_nested_file():
 
 
 def test_factory_method():
-    test_filepath = 'tst/Inputs/test_factory_definition.json'
+    test_filepath = filepath.localpath('test_factory_definition.json', 'tst/Inputs/')
     test_output = deck_input.read_file(test_filepath)
     cards = [Card(u'card1')]*2
     cards.extend([Card(u'card2')]*3)
