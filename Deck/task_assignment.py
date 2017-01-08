@@ -1,6 +1,10 @@
 import random
 import copy
 
+class Workers(object):
+    SCUP = 1
+    KIP = 2
+
 
 class Task(object):
     def __init__(self, description, difficulty=0, group=None, assignment=Workers.SCUP):
@@ -29,11 +33,6 @@ class Task(object):
     def __str__(self):
         assignee = 'SCUP' if self.assignment == 1 else 'KIP'
         return 'Description: %s Assignee: %s Difficulty: %s' % (self.description, assignee, self.difficulty)
-
-
-class Workers(object):
-    SCUP = 1
-    KIP = 2
 
 
 def get_total_difficulty(task_list):
