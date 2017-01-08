@@ -7,6 +7,7 @@ class Task(object):
         self.type = None
         self.difficulty = 0
         self.assignment = Workers.SCUP
+        self.group = None
 
     def flip(self):
         if self.assignment == Workers.SCUP:
