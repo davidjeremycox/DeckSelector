@@ -1,0 +1,59 @@
+{
+  "cardDefinitions": [
+    {
+      "objectName": "FlippedMealFactory",
+      "importLoc": "Deck.meal_card"
+    }
+  ],
+  "deck": {
+    "cards": {
+      "card1": {
+        "type": "FlippedMealFactory",
+        "number": 2,
+        "auto_assign": true,
+        "cooking_tasks": [
+          {
+            "description": "Do this",
+            "difficulty": 1
+          },
+          {
+            "description": "Do That",
+            "difficulty": 2,
+            "group": "a"
+          }
+        ],
+        "cleaning_tasks": []
+      },
+      "card2": {
+        "type": "FlippedMealFactory",
+        "number": 1,
+        "cooking_tasks": [
+          {
+            "description": "Do This",
+            "difficulty": 1,
+            "assignment": 1
+          },
+          {
+            "description": "Do That",
+            "difficulty": 2,
+            "group": "a",
+            "assignment": 2
+          }
+        ],
+        "cleaning_tasks": [
+          {
+            "description": "Clean This",
+            "difficulty": 1,
+            "assignment": 2
+          },
+          {
+            "description": "Clean That",
+            "difficulty": 2,
+            "group": "a",
+            "assignment": 1
+          }
+        ]
+      }
+    }
+  }
+}

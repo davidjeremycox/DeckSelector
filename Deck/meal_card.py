@@ -1,13 +1,16 @@
 import copy
 
-from Deck.card import Card
+from Deck.nested_card import NestedCard
 import Deck.task_assignment as task_assignment
 
-class Meal(Card):
-    def __init__(self, name, json_dict, type_definition):
+class Meal(NestedCard):
+    def __init__(self, name, json_values, card_definitions=None):
+        super(Meal, self).__init__(name, json_values, card_definitions)
         self.name = name
-        self.cooking_tasks = []
-        self.cleaning_tasks = []
+        self.cooking_tasks = [task_assignment.Task(**values) for values in json_values['cooking_tasks']]
+        self.cleaning_tasks = [task_assignment.Task(**values) for values in json_values['cleaning_tasks']]
+        if json_values.get('auto_assign', False):
+            self.assign()
 
     def __eq__(self, other):
         if not isinstance(other, Meal):
@@ -28,7 +31,14 @@ class Meal(Card):
 
     def __str__(self):
         if self.deck == None:
-            pass
+            base_str = "Meal: %s" % self.name
+            base_str += '\nCooking Tasks:'
+            for task in self.cooking_tasks:
+                base_str += '\n\t%s' % str(task)
+            base_str += '\nCleaning Tasks:'
+            for task in self.cleaning_tasks:
+                base_str += '\n\t%s' % str(task)
+            return base_str
 
     def assign(self):
         self.cooking_tasks = self.assign_tasks(self.cooking_tasks)
@@ -36,3 +46,17 @@ class Meal(Card):
 
     def assign_tasks(self, task_list):
         return task_assignment.assign_tasks(task_list)
+
+    def flip(self):
+        for task in self.cooking_tasks:
+            task.flip()
+        for task in self.cleaning_tasks:
+            task.flip()
+
+def FlippedMealFactory(name, json_values, card_definitions):
+    meal = Meal(name, json_values, card_definitions)
+    flipped_meal = copy.deepcopy(meal)
+    flipped_meal.flip()
+    meal.factory = 'FlippedMealFactory'
+    flipped_meal.factory = 'FlippedMealFactory'
+    return [meal, flipped_meal]

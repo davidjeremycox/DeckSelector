@@ -1,13 +1,14 @@
 import random
 import copy
 
+
 class Task(object):
-    def __init__(self, description):
+    def __init__(self, description, difficulty=0, group=None, assignment=Workers.SCUP):
         self.description = description
         self.type = None
-        self.difficulty = 0
-        self.assignment = Workers.SCUP
-        self.group = None
+        self.difficulty = difficulty
+        self.assignment = assignment
+        self.group = group
 
     def flip(self):
         if self.assignment == Workers.SCUP:
@@ -25,15 +26,22 @@ class Task(object):
         else:
             return True
 
+    def __str__(self):
+        assignee = 'SCUP' if self.assignment == 1 else 'KIP'
+        return 'Description: %s Assignee: %s Difficulty: %s' % (self.description, assignee, self.difficulty)
+
+
 class Workers(object):
     SCUP = 1
     KIP = 2
+
 
 def get_total_difficulty(task_list):
     total = 0
     for task in task_list:
         total += task.difficulty
     return total
+
 
 def get_total_assigned_difficult(task_list, assignee):
     total = 0
@@ -42,10 +50,12 @@ def get_total_assigned_difficult(task_list, assignee):
             total += task.difficulty
     return total
 
+
 def difficult_difference(task_list, first_assignee=Workers.SCUP, second_assignee=Workers.KIP):
     first_diff = get_total_assigned_difficult(task_list, first_assignee)
     second_diff = get_total_assigned_difficult(task_list, second_assignee)
     return first_diff - second_diff
+
 
 def assign_tasks(task_list, first_assignee=Workers.SCUP, second_assignee=Workers.KIP):
     working_list = copy.deepcopy(task_list)
@@ -58,6 +68,7 @@ def assign_tasks(task_list, first_assignee=Workers.SCUP, second_assignee=Workers
     if shuffle_difference < equal_difference:
         return assigned_list_shuffle
     return assigned_list_equal
+
 
 def shuffle_assignment(task_list, first_assignee=Workers.SCUP, second_assignee=Workers.KIP):
     total_difficulty = get_total_difficulty(task_list)
@@ -75,6 +86,7 @@ def shuffle_assignment(task_list, first_assignee=Workers.SCUP, second_assignee=W
     assigned_list.extend(task_list)
     return assigned_list
 
+
 def equal_assignment(task_list, first_assignee=Workers.SCUP, second_assignee=Workers.KIP):
     assigned_list = []
     target_count = len(task_list) // 2
@@ -89,7 +101,7 @@ def equal_assignment(task_list, first_assignee=Workers.SCUP, second_assignee=Wor
     assigned_list.extend(task_list)
     return assigned_list
 
+
 def print_task_list(task_list):
     for task in task_list:
-        assignee = 'SCUP' if task.assignment == 1 else 'KIP'
-        print('Description: %s Assignee: %s Difficulty: %s' % (task.description, assignee, task.difficulty))
+        print(str(task))
