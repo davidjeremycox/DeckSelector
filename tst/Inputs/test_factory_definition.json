@@ -1,0 +1,17 @@
+{
+  "cardDefinitions": [
+    {
+      "objectName": "sample_factory",
+      "importLoc": "Deck.card"
+    }
+  ],
+  "deck": {
+    "cards": {
+      "card1": {
+        "type": "sample_factory",
+        "number": 2
+      },
+      "card2": 3
+    }
+  }
+}

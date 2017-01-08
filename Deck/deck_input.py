@@ -97,7 +97,7 @@ def read_file(filename, override_seed=None):
     name = get_with_default(raw, DECK_NAME_FIELD_NAME, DEFAULT_NAME)
     seed = get_with_default(raw, SEED_FIELD_NAME, override_seed, exception_if_fail=False)
     deck = Deck(name=name, seed=seed)
-    for a_card in sorted(cards):
+    for a_card in cards:
         deck.add_card(a_card)
 
     return deck
