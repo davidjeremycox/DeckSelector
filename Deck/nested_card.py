@@ -29,3 +29,7 @@ class NestedCard(Card):
         else:
             return super(NestedCard, self).__str__()
 
+    def is_nested(self):
+        if self.deck.card_list:
+            return True
+        return False
