@@ -31,7 +31,7 @@ class Meal(NestedCard):
         return True
 
     def __str__(self):
-        if not self.deck.card_list:
+        if not self.is_nested():
             base_str = "Meal: %s" % self.name
             base_str += '\nCooking Tasks:'
             for task in self.cooking_tasks:
