@@ -8,7 +8,7 @@ class NestedCard(Card):
     def __init__(self, in_name, json_values=None, card_definitions=None, deck=None, replace_draws=None):
         super(NestedCard, self).__init__(in_name=in_name)
         self.replace_draws = replace_draws
-        if json_values is None and deck is None:
+        if (json_values is None and deck is None) or (deck is None and card_definitions is None):
             return
         if json_values is not None:
             cards = deck_input.get_cards(json_values, card_definitions)
@@ -25,5 +25,8 @@ class NestedCard(Card):
             raise NotImplementedError("Unable to construct nested card without deck or json values")
 
     def __str__(self):
-        card = self.deck.draw_card(self.replace_draws)
-        return str(card)
+        if self.deck:
+            card = self.deck.draw_card(self.replace_draws)
+            return str(card)
+        else:
+            return super(NestedCard, self).__str__()
