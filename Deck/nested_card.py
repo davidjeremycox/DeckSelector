@@ -7,6 +7,7 @@ class NestedCard(Card):
 
     def __init__(self, in_name, json_values=None, card_definitions=None, deck=None, replace_draws=None):
         super(NestedCard, self).__init__(in_name=in_name)
+        self.replace_draws = replace_draws
         if json_values is None and deck is None:
             return
         if json_values is not None:
