@@ -31,7 +31,7 @@ def test_shuffle_assignment():
     random.seed(10)
     sample_tasks = build_task_list()
     assigned_tasks = task_assignment.shuffle_assignment(sample_tasks, Workers.KIP, Workers.SCUP)
-    ref_assignees = [Workers.KIP, Workers.KIP, Workers.SCUP]
+    ref_assignees = [Workers.KIP, Workers.SCUP, Workers.SCUP]
     for ind, pair in enumerate(zip(assigned_tasks, ref_assignees)):
         task, ref_assignee = pair
         helper.print_if_assert('Task assignment mismatch index: %s' % ind, task.assignment, ref_assignee)
