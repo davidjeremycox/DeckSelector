@@ -47,7 +47,8 @@ class Meal(NestedCard):
         self.cooking_tasks = self.assign_tasks(self.cooking_tasks)
         self.cleaning_tasks = self.assign_tasks(self.cleaning_tasks)
 
-    def assign_tasks(self, task_list):
+    @staticmethod
+    def assign_tasks(task_list):
         return task_assignment.assign_tasks(task_list)
 
     def flip(self):
