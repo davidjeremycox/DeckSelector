@@ -1,0 +1,40 @@
+{
+  "cardDefinitions": [
+    {
+      "objectName": "FlippedMealFactory",
+      "importLoc": "Deck.meal_card"
+    }
+  ],
+  "deck": {
+    "cards": {
+      "card2": {
+        "type": "FlippedMealFactory",
+        "number": 1,
+        "cooking_tasks": [
+          {
+            "description": "Pasta",
+            "difficulty": 1,
+            "assignment": 1
+          },
+          {
+            "description": "Sauce",
+            "difficulty": 2,
+            "assignment": 2
+          }
+        ],
+        "cleaning_tasks": [
+          {
+            "description": "Clean Sauce",
+            "difficulty": 1,
+            "assignment": 2
+          },
+          {
+            "description": "Clean Pasta",
+            "difficulty": 2,
+            "assignment": 1
+          }
+        ]
+      }
+    }
+  }
+}
