@@ -3,6 +3,7 @@ import copy
 from Deck.nested_card import NestedCard
 import Deck.task_assignment as task_assignment
 
+
 class Meal(NestedCard):
     def __init__(self, name, json_values, card_definitions=None):
         super(Meal, self).__init__(name, json_values, card_definitions)
@@ -30,7 +31,7 @@ class Meal(NestedCard):
         return True
 
     def __str__(self):
-        if self.deck == None:
+        if not self.deck.card_list:
             base_str = "Meal: %s" % self.name
             base_str += '\nCooking Tasks:'
             for task in self.cooking_tasks:
@@ -39,6 +40,8 @@ class Meal(NestedCard):
             for task in self.cleaning_tasks:
                 base_str += '\n\t%s' % str(task)
             return base_str
+        else:
+            return super(Meal, self).__str__()
 
     def assign(self):
         self.cooking_tasks = self.assign_tasks(self.cooking_tasks)
@@ -52,6 +55,7 @@ class Meal(NestedCard):
             task.flip()
         for task in self.cleaning_tasks:
             task.flip()
+
 
 def FlippedMealFactory(name, json_values, card_definitions):
     meal = Meal(name, json_values, card_definitions)
