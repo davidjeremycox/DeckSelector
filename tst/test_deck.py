@@ -25,16 +25,16 @@ def test_draw_too_many_cards():
 def test_draw_cards():
     deck = build_sample_deck(10)
     cards = deck.draw_cards(2)
-    ref_names = ['Second Card', 'First Card']
-    for card, name in zip(cards, ref_names):
-        helper.print_if_assert('Unexpected card', card.name, name)
+    ref_names = ['Third Card', 'First Card']
+    for ind, (card, name) in enumerate(zip(cards, ref_names)):
+        helper.print_if_assert('Unexpected card %s' % ind, card.name, name)
 
 
 def test_draw_card_reshuffle():
     deck = build_sample_deck(10)
     deck.reshuffle = True
     cards = deck.draw_cards(5)
-    ref_names = ['Second Card', 'First Card', 'Third Card', 'First Card', 'Second Card']
+    ref_names = ['Third Card', 'First Card', 'Second Card', 'Second Card', 'First Card']
     for ind, pair in enumerate(zip(cards, ref_names)):
         card, name = pair
         if card.name != name:
