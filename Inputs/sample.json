@@ -9,29 +9,39 @@
     "cards": {
       "card2": {
         "type": "FlippedMealFactory",
-        "number": 1,
+        "number": 5,
         "cooking_tasks": [
           {
-            "description": "Pasta",
+            "description": "Cook Pasta",
             "difficulty": 1,
             "assignment": 1
           },
           {
-            "description": "Sauce",
-            "difficulty": 2,
+            "description": "Cook Sauce",
+            "difficulty": 1,
+            "assignment": 2
+          },
+          {
+            "description": "Prepare Sauce Additions",
+            "difficulty": 1,
             "assignment": 2
           }
         ],
         "cleaning_tasks": [
           {
-            "description": "Clean Sauce",
+            "description": "Clean Saucepan",
+            "difficulty": 2,
+            "assignment": 1
+          },
+          {
+            "description": "Clean Pasta pot",
             "difficulty": 1,
             "assignment": 2
           },
           {
-            "description": "Clean Pasta",
-            "difficulty": 2,
-            "assignment": 1
+            "description": "Clean Strainer",
+            "difficulty": 1,
+            "assignment": 2
           }
         ]
       }
