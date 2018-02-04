@@ -16,6 +16,7 @@ IMPORT_LOCATION_FIELD_NAME = 'importLoc'
 TYPE_FIELD_NAME = 'type'
 REPLACEMENT_FIELD_NAME = 'replacement'
 NUMBER_FIELD_NAME = 'number'
+DECK_OPTIONS_FIELD = 'deckOptions'
 
 
 def import_card(a_definition):
@@ -96,7 +97,10 @@ def read_file(filename, override_seed=None):
     cards = build_cards(raw)
     name = get_with_default(raw, DECK_NAME_FIELD_NAME, DEFAULT_NAME)
     seed = get_with_default(raw, SEED_FIELD_NAME, override_seed, exception_if_fail=False)
+    deck_options = raw.get(DECK_OPTIONS_FIELD, {})
     deck = Deck(name=name, seed=seed)
+    for key, value in deck_options.items():
+        setattr(deck, key, value)
     for a_card in cards:
         deck.add_card(a_card)
 

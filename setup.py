@@ -3,7 +3,7 @@
 from distutils.core import setup
 
 setup(name='DeckSelector',
-      version='1.0',
+      version='1.0.1',
       description='Drawing cards from a deck',
       author='David Cox',
       author_email='davidjeremycox@gmail.com',
